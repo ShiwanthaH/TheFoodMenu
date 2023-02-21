@@ -1,60 +1,74 @@
 const typeMenu = document.getElementById("type-menu");
 const menuContainer = document.getElementById("menu-container");
 
+// JS list functions - map, filter
 typeMenu.innerHTML = "";
-menuContainer.innerHTML = "";
 
-let types = [];
+let types = ["all"];
 
-foods.map((food)=>{
+foods.map(function(food) {
     if(!types.includes(food.type)) {
         types.push(food.type);
     }
 })
 
-types.map((type)=>{
-    let elem = `<button class="btn type">${type}</button>`
+console.log(types)
+
+types.map(function(type) {
+    let elem = `<button class="btn type">${type}</button>`;
     typeMenu.innerHTML += elem;
 })
 
-const btns = document.querySelectorAll(".btn");
+showAllFoods();
 
-foods.map((food)=>{
-    let elem = 
-    `<div class="menu-item">
-        <img src="${food.image}" alt="">
-        <div class="item-data">
-            <h3 class="name">${food.name}</h3>
-            <p class="desc">${food.description}</p>
-            <h4 class="price">$${food.price}</h4>
-            <div class="type">${food.type}</div>
-        </div>
-    </div>`
-    menuContainer.innerHTML += elem;
-})
+function showAllFoods() {
+    menuContainer.innerHTML = "";
+
+    foods.map(function(food) {
+        let elem = `
+        <div class="menu-item">
+            <img src="${food.image}" alt="">
+            <div class="item-data">
+                <h3 class="name">${food.name}</h3>
+                <p class="desc">${food.description}</p>    
+                <h4 class="price">$${food.price}</h4>
+                <div class="type">${food.type}</div>
+            </div>
+        </div>`;
+        menuContainer.innerHTML += elem;
+    })
+}
 
 function filterFoods(category) {
-    console.log(category)
     menuContainer.innerHTML = "";
-    foods.map((food)=>{
+    foods.filter(function(food){
         if(food.type == category) {
-            let elem = 
-            `<div class="menu-item">
+            let elem = `
+            <div class="menu-item">
                 <img src="${food.image}" alt="">
                 <div class="item-data">
                     <h3 class="name">${food.name}</h3>
-                    <p class="desc">${food.description}</p>
+                    <p class="desc">${food.description}</p>    
                     <h4 class="price">$${food.price}</h4>
                     <div class="type">${food.type}</div>
                 </div>
-            </div>`
+            </div>`;
             menuContainer.innerHTML += elem;
         }
-    });
-}
+    })
+} 
 
-btns.forEach((btn) => {
-    btn.addEventListener('click', (e)=>{
-        filterFoods(btn.textContent);
-    });
+const btns = document.querySelectorAll(".btn");
+
+btns.forEach(function(btn){
+    btn.addEventListener('click', function(){
+        if(btn.textContent != "all") {
+            filterFoods(btn.textContent);
+        } else{
+            showAllFoods();
+        }
+    })
 })
+
+
+// UI/UX, DB, FE, BE

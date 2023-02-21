@@ -41,4 +41,13 @@ const foods = [
         price:19.99,
         image:"./images/smoothie.jpg"
     },
+    {
+        name:"smoothie",
+        type:"test",
+        description:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        price:19.99,
+        image:"./images/smoothie.jpg"
+    },
 ]
+
+// JSON
